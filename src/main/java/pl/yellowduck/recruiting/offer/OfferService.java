@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.lang.module.ModuleDescriptor;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,14 +17,16 @@ public class OfferService {
 
   @Autowired
   public OfferService(H2OfferRepository h2OfferRepository,
-                      MongoOfferRepository mongoOfferRepository) {
+                      MongoOfferRepository mongoOfferRepository,
+                      Date endDate
+                      ) {
+    this.endDate = endDate;
     this.h2OfferRepository = h2OfferRepository;
     this.mongoOfferRepository = mongoOfferRepository;
   }
 
   @Transactional
-  public void create(String name, Date endDate) {
-    this.endDate = endDate;
+  public void create(String name) {
     Offer offer = createNewOffer(name);
 
     if (isProduction()) {
