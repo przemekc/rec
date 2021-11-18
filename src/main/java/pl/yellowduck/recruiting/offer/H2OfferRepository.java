@@ -1,7 +1,10 @@
 package pl.yellowduck.recruiting.offer;
 
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 
+@Component
 public class H2OfferRepository {
 
   public Offer save(Offer entity) {

@@ -2,6 +2,7 @@ package pl.yellowduck.recruiting.offer;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.util.Date;
 import java.util.Objects;
 
@@ -15,6 +16,9 @@ public class Offer {
 
   private Date created;
 
+  private Date activeTo;
+
+  @ManyToOne
   private Product product;
 
   public Integer getId() {
@@ -60,5 +64,9 @@ public class Offer {
   @Override
   public int hashCode() {
     return Objects.hash(id, name, created);
+  }
+
+  public void activate(Date endDate) {
+    this.activeTo = endDate;
   }
 }

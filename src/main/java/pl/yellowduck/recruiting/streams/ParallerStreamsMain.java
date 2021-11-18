@@ -3,7 +3,6 @@ package pl.yellowduck.recruiting.streams;
 import lombok.SneakyThrows;
 import org.apache.commons.lang3.RandomUtils;
 
-import java.util.concurrent.ForkJoinPool;
 import java.util.stream.IntStream;
 
 public class ParallerStreamsMain {

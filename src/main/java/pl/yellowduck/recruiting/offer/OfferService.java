@@ -17,16 +17,14 @@ public class OfferService {
 
   @Autowired
   public OfferService(H2OfferRepository h2OfferRepository,
-                      MongoOfferRepository mongoOfferRepository,
-                      Date endDate
-                      ) {
-    this.endDate = endDate;
+                      MongoOfferRepository mongoOfferRepository) {
     this.h2OfferRepository = h2OfferRepository;
     this.mongoOfferRepository = mongoOfferRepository;
   }
 
   @Transactional
-  public void create(String name) {
+  public void create(String name, Date endDate) {
+    this.endDate = endDate;
     Offer offer = createNewOffer(name);
 
     if (isProduction()) {
@@ -39,14 +37,13 @@ public class OfferService {
 
   private Offer createNewOffer(String name) {
     Offer offer = new Offer();
-    offer.setCreated(this.endDate);
+    offer.setCreated(new Date());
     offer.setName(name);
     return offer;
   }
 
-  private void changeCategory(Integer id, String name) {
-    System.out.println(this.endDate);
-    findOffer(id).getProduct().getCategory().setName(name);
+  public void activate(Integer id) {
+    findOffer(id).activate(this.endDate);
   }
 
   private Offer findOffer(Integer id) {
