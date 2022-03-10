@@ -8,11 +8,13 @@ public class MapProblem {
 
   public static void main(String[] args) {
     Map<Id, String> map = new HashMap<>();
-    map.put(Id.of(1, 1), "customer1");
-    map.put(Id.of(2, 1), "customer2");
+    map.put(Id.of(2, 1), "customer 2");
+    map.put(Id.of(1, 1), "customer 1");
 
     String s = map.get(Id.of(1, 1));
     System.out.println(s);
+
+    System.out.println(map.values());
   }
 }
 
